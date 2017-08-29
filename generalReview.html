@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.4">
+<title>Review of integration applications</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+body{-webkit-font-smoothing:antialiased}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+body{tab-size:4}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+</head>
+<body class="book">
+<div id="header">
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_review_of_integration_applications">Review of integration applications</a>
+<ul class="sectlevel1">
+<li><a href="#_general_review_of_all_flows">1. General review of all flows</a>
+<ul class="sectlevel2">
+<li><a href="#_standards">1.1. Standards</a></li>
+<li><a href="#_object_store">1.2. Object-store</a></li>
+<li><a href="#_dangerous_defaults">1.3. Dangerous Defaults</a></li>
+<li><a href="#_copy_paste">1.4. Copy/paste</a></li>
+<li><a href="#_session_variables">1.5. Session Variables</a></li>
+<li><a href="#__retry_pattern_usage">1.6. "Retry" pattern usage</a></li>
+<li><a href="#_transformation_xslt_templates_dataweave">1.7. Transformation: XSLT, templates, DataWeave</a></li>
+<li><a href="#_excessive_scope_of_xpath">1.8. Excessive scope of XPath</a></li>
+<li><a href="#_absence_of_transaction_control">1.9. Absence of transaction-control</a></li>
+<li><a href="#_logging_levels">1.10. Logging Levels</a></li>
+<li><a href="#_exception_handling">1.11. Exception Handling</a></li>
+<li><a href="#_http_connectors">1.12. HTTP connectors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="/tmp/mulesoft-logo-white-bg-big.png" alt="Logo" width="100"></span> &#160;&#160;&#160;&#160;&#160;&#160;            <strong><span class="big">Integration Review</span></strong> (The Coca Cola Company)</p>
+</div>
+</div>
+</div>
+<h1 id="_review_of_integration_applications" class="sect0">Review of integration applications</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+todo - write guidelines for XSLT vs. dataweave
+asdfasdf
+asdf
+as
+dfsa
+asdf
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_general_review_of_all_flows">1. General review of all flows</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>MuleSoft has noted some patterns in consistent use; we summarize these here for general coverage and do not repeat these guidance comments for all reviewed flows - this helps to keep the review-report concise and more readable.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Standards - MuleSoft has standards which we apply to the entire lifecycle of integration development, deployment and operation. Some of these standards are MuleSoft standards, while others are industry-standard. Below is a list of applicable industry-standards that should be observed consistently at all times; subsequently the report will mention these by the standard names shown here. MuleSoft standards are referenced</p>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="_standards">1.1. Standards</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>MuleSoft has standards which we apply to the entire lifecycle of integration development, deployment and operation. Some of these standards are MuleSoft standards, while others are industry-standard.We refer to some of these below as they relate to this review effort; subsequently the report will mention these by the standard names listed below:</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Industry Standards</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Reference</th>
+<th class="tableblock halign-left valign-top">Description &amp; URL</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP specification</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://tools.ietf.org/html/rfc7230" class="bare">https://tools.ietf.org/html/rfc7230</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RAML Specification</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://raml.org" class="bare">http://raml.org</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. MuleSoft Standards</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Mule Coding Standards</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="../../mSquaredTaxonomy/7-architectureRealization/2-implementationGovernance/1-standards/muleCodingStyle.html">Mule Coding Style</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Mule Design Standards</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="../../mSquaredTaxonomy/7-architectureRealization/2-implementationGovernance/1-standards/muleDesign.html">Mule Design Standards</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Java Standards</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><a href="https://google.github.io/styleguide/javaguide.html">Google Java code standards</a></p>
+</li>
+<li>
+<p>Java code should meet <a href="../../mSquaredTaxonomy/7-architectureRealization/2-implementationGovernance/1-standards/reviews/javaCodeAnalysis.html">Java code analysis standards</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_object_store">1.2. Object-store</h3>
+<div class="sect3">
+<h4 id="_usage">1.2.1. Usage</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>There is extensive use of the object-store - tactical definitions in many places. MuleESB&#8217;s object-store is efficient and as lightweight as possible but each new object-store <strong><em>does</em></strong> incur some overhead.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Remedy:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>define a standard configuration-base which is bundled inside a version-controlled jar, which allows a limited degree of additional tuning/sizing</p>
+</li>
+<li>
+<p>require developers to use this jar</p>
+</li>
+<li>
+<p>review code to confirm that object-stores are not created <em>ad hoc</em>.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dangerous_defaults">1.3. Dangerous Defaults</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Relying on (or allowing) default-setting/action to drive system behavior is inadvisable for numerous reasons because changes in behavior can occur unintentionally under some conditions. Allowing unspecified defaults leaves many pathways for abuse or defective behavior.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>In general, use -  and allow only - explicitly defined/needed data and behaviors. Examples are described below:</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_http_listeners">1.3.1. HTTP listeners</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>HTTP listeners must be configured with explicit allowed-methods - i.e. if the endpoint is being exposed for GET, then allow <strong>only</strong> GET.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>There is more than one way to achieve this:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Anypoint API Platform combined with RAML explicitly sets HTTP-methods allowed on endpoints).</p>
+</li>
+<li>
+<p>If RAML is not used, specify the allowed HTTP-methods on connectors. The HTTP listener-configuration has an attribute called allowedMethods - see below (note the important words: <strong><em>"will only listen for requests with these methods."</em></strong>)</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Attribute:allowedMethods
+Type: class java.lang.String
+
+Description:comma-separated list of HTTP methods. If
+ specified, the listener will only listen for requests with these methods.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__default_action_anti_pattern">1.3.2. "Default-action" anti-pattern</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Note: this is a subtle anti-pattern - read with care.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Silent default-action is typically an antipattern because default-actions that produce undesirable outcomes are exceedingly difficult to locate (there is no error message or indication anywhere). This is best illustrated by an example:</p>
+</dd>
+</dl>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Example</p>
+</div>
+<div class="paragraph">
+<p>Consider code that retrieves a value out of a collection (List, ArrayList etc.) but the developer expects only one value - not multiple values.</p>
+</div>
+<div class="paragraph">
+<p>A typical approach is to silently take one element. When more than one value happens to be present (un-communicated change or defect upstream), the code silently continues to take the default value (first or last).</p>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>The appropriate approach is</p>
+<div class="ulist">
+<ul>
+<li>
+<p>when only one element is expected to be present in a collection (List, ArrayList etc.):</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><strong>throw an exception if there is more than one element present</strong></p>
+</li>
+<li>
+<p>use explicit indexed-retrieval (i.e. <code>.get(0)</code>, <code>xxxxx[0]</code> etc.)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>multiple elements possible, but still explicitly want only the first or last item:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>use explicit indexed-retrieval (i.e. <code>.get(0)</code>, <code>xxxxx[0]</code> etc.)</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>The reason that default-action take first/last is an anti-pattern is because it silently ignores data. Taking the approach above - explicit-addressing with exception (in case 1) will bring problems or changes to light immediately. The default-action tends to obscure changes, and when data <strong>does</strong> change, default action will cause a lot of time to be consumed by developers who will have to track flow through the entire project before seeing that default-first or default-last.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>As a general rule:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>avoid default-actions - favor explicit-decisions/selections</p>
+</li>
+<li>
+<p>validate data-shape/extent explicitly, and throw an exception if the data is not in precisely the expected shape/state.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_poll_scope">1.3.3. Poll-scope</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Operation of enterprise systems relies on routine and predictability.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Polls with arbitrary timing create difficulties with automated monitoring as well as user expectations. This problem is less troublesome when the poll-interval is short (eg. 5 minutes); when the poll-interval is long (eg. 24 hours), the polling will occur at odd times of the day, based on when the application is deployed -  this is undesirable.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>MuleSoft recommends that poll-scopes be:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>set to deterministic values using CRON-poll intervals</p>
+</li>
+<li>
+<p>staggered so that there is not a sudden influx of large amounts of data (as would occur with a large number of applications all triggered to do daily reports at 1:00am).</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_copy_paste">1.4. Copy/paste</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>See <strong>MuleESB Design Standards</strong> - copy-paste is to be avoided wherever possible. For example, this repeats in all projects:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This block is repeated in every project</p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="image"><img src="images/repetitiveLoggingBeanConfig.png" alt="paste" width="300"></span></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Beans that are needed by multiple projects should be:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>defined in a version-controlled file</p>
+</li>
+<li>
+<p>packaged in a jar - jar then stored in an artifact repository</p>
+</li>
+<li>
+<p>the beans should then be imported using <code>&lt;spring:import</code> to make them available to all projects.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>This will bring total consistency, reduce manual code-maintenance and make project code easier to navigate.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Very similar Exception-handling is pasted in many projects - this too should be included via <code>&lt;spring:import</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_avoidable_replication">1.4.1. avoidable replication</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Situations such as the following (all calling the same web-service) can be avoided; there is no execution-efficiency gain in this case, but the code is easier to read, understand and maintain.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p><span class="image"><img src="images/needlessConnectorReplicate.png" alt="replicated" width="550"></span></p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Assemble the HTTP connector query-string separately as needed, store in a flow-variable</p>
+</li>
+<li>
+<p>move the HTTP connector downstream after the first choice-block shown</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_session_variables">1.5. Session Variables</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Session variables are being used widely (all Mule-applications reviewed to date).</p>
+</dd>
+<dt class="hdlist1"></dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Best Practice</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>MuleSoft recommends avoiding Session variables</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>References</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><a href="../mSquaredTaxonomy/7-architectureRealization/2-implementationGovernance/1-standards/muleCodingStyle.html">Mule Coding Style Guide</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>reason</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>"session" does not have the same meaning in integration as it does in ordinary web-applications</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="__retry_pattern_usage">1.6. "Retry" pattern usage</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Servers and services fail on occasion, which is the reason that "retry" processing is a common construct in enterprise software. However, it is important to apply retry-logic only under appropriate conditions - such as connection-timeout.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>There are some error-conditions under which retrying does not make sense - such as many of the 4xx HTTP status codes (eg. 401 Unauthorized, 404 Not Found). Most 4xx responses do not change with repeated requests unless the service-provider has advised otherwise.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Even if a message fails due to what <strong><em>could</em></strong> be a transient problem (timeout), there are limits to what retry-logic makes sense. The options are:</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>limit number of retries to a fixed value, with constant-intervals between retry</p>
+</li>
+<li>
+<p>as above, but increase the wait-time between retries, such as doubling the interval.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>The important points are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>retry-logic must be such that no un-processable message lives in the system indefinitely, being retried without limit because this will cause pointless drain on network bandwidth and CPU capacity.</p>
+</li>
+<li>
+<p>some messages are not worth retrying because nothing will ever cause them to process successfully - eg. malformed XML, null-payload messages which fail to process because components actually require a non-null payload.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="__retry_has_limits_implement_plan_b_handling">1.6.1. "Retry" has limits - implement Plan-B handling</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Exception-handling is essential for enterprise integration; exhaustion of configured retry-attempts amounts to an exception, and this exception needs to be handled explicitly rather than ignored. It may not actually <strong>throw</strong> an exception, but silently giving up on a request has the same effect as ignoring an exception.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p><strong>Remedy</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ensure that <code>&lt;until-successful&gt;</code> blocks have a "dead-letter queue" (DLQ) path defined</p>
+</li>
+<li>
+<p>ensure that "dead-letter paths" have realistic destinations:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>DLQ needs to be actively monitored by a process that will take appropriate action specific to the message priority/importance and content</p>
+</li>
+<li>
+<p>infinite-retry has the same effect as "poison" messages</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__poison_message">1.6.2. "Poison" message</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+un-processable messages are called <strong><em>poison</em></strong> messages because they can compromise system-function.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Poison message behavior is a key motivator for thorough observance of HTTP status-codes (see elsewhere in this document), because these allow reliable dertermination of the possibility that a given message will ever process correctly. For example: a "400 Bad Request" response is a very clear indication that retry is futile.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>The design method for any retry-logic is:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>establish classes of responses that warrant retry; permit retry only for those messages, and ensure that all other messages are sent to fast-fail route.</p>
+</li>
+<li>
+<p>establish standards and govern observance of same for retry-parameters.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_do_not_use_default_failure_mode_for_until_successful">1.6.3. Do not use default-failure mode for until-successful</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>The action to take on failure should be explicitly defined - do not leave this to default-behavior (for a specific example of this, see <code>SentDailyReportsToSplunkFlow</code> in flow <code>mdmreportstosplunk.xml</code> in project <code>freestylemdmreportstosplunk</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transformation_xslt_templates_dataweave">1.7. Transformation: XSLT, templates, DataWeave</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Transformations are not always necessary - consider alternatives on a case-by-case basis:</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>using  <a href="https://docs.mulesoft.com/mule-user-guide/v/3.7/parse-template-reference">templates</a></p>
+</li>
+<li>
+<p>using <a href="https://docs.mulesoft.com/mule-user-guide/v/3.7/dataweave-reference-documentation">DataWeave</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>The suggestion is not to systematically replace every XSLT with DataWeave, but rather to be aware of the alternative approach and to be alert for performance issues so that when a given integration needs to be refactored for whatever reason, the alternative can be considered.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_excessive_scope_of_xpath">1.8. Excessive scope of XPath</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Do not use global XPath qualifier <code>//</code>. For example, the following XPath:</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p><code>xsl:when test="//urn:MasterDataCreate/urn:PromoEnabled = 'No'"&gt;</code></p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>scans the entire document and has a substantial performance cost; when used repeatedly in XSLT this cost is incurred every time.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p><strong>Remedy</strong>: make XPath as specific as possible at all times - use fully-qualified XPath.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_absence_of_transaction_control">1.9. Absence of transaction-control</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>This has been noted in one project: CIC Integration (v5), but the pattern is so extensively used there that it is important to highlight this clearly.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Several database-inserts that should be getting done in "all-or-none" mode (i.e. a single transaction) are being done sequentially <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>, <strong><em>without rollback or cleanup in case one fails</em></strong></p>
+</dd>
+<dt class="hdlist1"></dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Critical</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Rewrite this application. MuleSoft recommends:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in-depth review by architect - flow-by-flow, connector-by-connector.</p>
+</li>
+<li>
+<p>start with a "clean slate", with architect oversight over the reconstruction</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the existing flows seem to be functional because failures are reported to be intermittent/infrequent which means the individual pieces of the flows do function.</p>
+</li>
+<li>
+<p>reconstruction can be quicker and more efficient than would be the case if all of the main-process flow were discarded.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Recommended step-by-step:</p>
+</div>
+<div class="paragraph">
+<p><span class="big">Phase I</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>assemble a team of developers, have them read this document thoroughly. Validate they have complete understanding of the contents.</p>
+</li>
+<li>
+<p>each developer is assigned one flow in CicIntegrationMainProcess which contains database-write operation(s). Instruct the developers to scrupulously restrict their activities between the <code>&lt;flow&gt;</code> and <code>&lt;/flow&gt;</code> tags (so that SVN merges are simple).</p>
+</li>
+<li>
+<p>each developer refactors one flow at a time, applying the best-practice guidance provided by MuleSoft <strong><em>EXCEPT for transaction-scope</em></strong> (that is the final step). The flow-diagrams should get significantly shorter and easier to read.</p>
+</li>
+<li>
+<p>The team should work quickly in short cycles of refactor, merge/commit. The goal is to minimize, economize current functionality with frequent tests to ensure function is still intact.</p>
+</li>
+<li>
+<p>When all the flows are compliant with best-practices (architect review), tag that version in SVN and prepare for the next phase.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="big">Phase II</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Architect and technical-lead review the refactored flow, noting the location of all DB-reads, and review options for co-locating the reads into one SQL query (any read that falls between existing write-operations is disqualified). Implement any read-consolidation opportunities and do regression-test</p>
+</li>
+<li>
+<p>When read-consolidation is complete, tested and committed, assess location of all DB-write operations. Identify any variable-setting that actions that can be moved upstream <strong>without affecting functionality</strong>; move these as far upstream as possible and consolidate. The goal is to have as <strong>few operations as possible between the DB-write operations</strong>.</p>
+</li>
+<li>
+<p>Continue to regression-test.</p>
+</li>
+<li>
+<p>when the DB-write operations have been put as closely together as possible, assemble one extra flow which makes a flow-ref to each of the DB-write flows, and regression-test.</p>
+</li>
+<li>
+<p>finally, put all of the above-mentioned flow-ref operations inside the transaction-scope.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>References</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p><a href="../mSquaredTaxonomy/7-architectureRealization/2-implementationGovernance/1-standards/muleCodingStyle.html">Mule Coding Style Guide</a></p>
+</li>
+<li>
+<p><a href="../../mSquaredTaxonomy/7-architectureRealization/2-implementationGovernance/1-standards/muleDesign.html">Mule Design Standards</a></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>reason</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>"session" does not have the same meaning in integration as it does in ordinary web-applications</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_logging_levels">1.10. Logging Levels</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Be mindful of the levels for each logging step.  Effective logging levels are especially necessary when monitoring via Splunk.  Below are the recommendations for proper logging level assignment.</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Logging Levels</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>FATAL</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Severe errors that cause premature termination.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>ERROR</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Other runtime errors or unexpected conditions.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>WARN</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Use of deprecated APIs, poor use of API, 'almost' errors, other runtime situations that are undesirable or unexpected, but not necessarily "wrong".</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>INFO</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Interesting runtime events (startup/shutdown).</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>DEBUG</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Detailed information on the flow through the system. Expect these to be written to logs only.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_exception_handling">1.11. Exception Handling</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>All production quality Mule Flows should have some type of exception handling.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_connectors">1.12. HTTP connectors</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Upgrade all HTTP connectors to HTTPEndpoint. Performance and configurability will be improved.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. CicIntegrationMainProcess
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2016-03-28 16:51:47 CDT
+</div>
+</div>
+</body>
+</html>

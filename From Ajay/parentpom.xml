@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.mulesoft.consulting</groupId>
+	<artifactId>mule-app-parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0</version>
+	<build>
+    <plugins>
+	    <plugin>
+	    	<groupId>org.apache.servicemix.tooling</groupId>
+	    	<artifactId>depends-maven-plugin</artifactId>
+		</plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.10</version>
+        <executions>
+          <execution>
+            <id>analyze-report</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>analyze-report</goal>
+            </goals>
+            <configuration>
+             <outputDirectory>../</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.12</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${project.build.directory}/dependency-analysis.html</file>
+                  <type>html</type>
+                  <classifier>optional</classifier>
+                </artifact>
+                ...
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-enforcer-plugin</artifactId>
+      <version>1.4</version>
+      <dependencies>
+        <dependency>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>extra-enforcer-rules</artifactId>
+          <version>1.0-beta-2</version>
+        </dependency>
+      </dependencies>
+      <executions>
+        <!-- ******************************************************* -->
+        <!-- Ensure that certain really important things are checked -->
+        <!-- and fail the build if any of these are violated         -->
+        <!-- ****************************************************** -->
+        <execution>
+          <id>enforce-important-stuff</id>
+          <goals>
+            <goal>enforce</goal>
+          </goals>
+          <phase>validate</phase>
+          <configuration>
+            <rules>
+              
+              <requireJavaVersion>
+                <version>1.7</version>
+              </requireJavaVersion>
+              
+              <bannedDependencies>
+                <searchTransitive>true</searchTransitive>
+                <includes>
+                    <!-- override "org.apache.maven:ignoredArtifact" to fail
+                         if exactly 1.0 version of ignoreArtifact is detected
+                         to be transitive dependency of the project -->
+                    <include>org.mule.modules:mule-module-http:[3.8.0]</include>
+                  </includes>
+                <excludes>
+                  <!-- Should be javax.servlet:javax.servlet-api:3.0.1 -->
+                  <exclude>javax.servlet:servlet-api:2.*</exclude>
+                  <!-- Should be org.springframework:3.2.* . Note this is
+                       for the core spring framework. Others such as
+                       WS etc may be different, but the convergence to the underlying
+                       core Spring framework should be the same -->
+                  <exclude>org.springframework:2.*</exclude>
+                  <exclude>org.springframework:3.0.*</exclude>
+                  <exclude>org.springframework:3.1.*</exclude>
+                  <!-- Should be slf4j 1.7.5 with logback and
+                       bridges to JCL, JUL and log4j (this means these
+                       individual libraries should not be included as the
+                       "bridges" implement the API and redirect to the
+                       underlying SLF4j impl -->
+                  <exclude>log4j:log4j</exclude>
+                  <exclude>commons-logging:4.1*</exclude>
+                  <exclude>org.slf4j:1.6*</exclude>
+                </excludes>
+              </bannedDependencies>
+            </rules>
+            <failFast>true</failFast>
+          </configuration>
+        </execution>
+    
+      </executions>
+    </plugin>
+      
+    </plugins>
+  </build>
+	<profiles>
+
+
+		<profile>
+			<id>deploy-cloudhub</id>
+			<dependencies>
+				<!-- Dependencies used only by the integration tests -->
+			</dependencies>
+			<activation>
+					<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+		
+				<plugins>
+										
+					<plugin>
+				    <groupId>org.mule.tools.maven</groupId>
+				    <artifactId>mule-maven-plugin</artifactId>
+				    <version>2.1.2</version>
+				    <configuration>
+				        <deploymentType>cloudhub</deploymentType>
+				       		<muleVersion>${mule.version}</muleVersion> 
+							<username>${cloudhub.username}</username> 
+							<password>${cloudhub.password}</password> 
+							<applicationName>${cloudhub.appname}</applicationName>
+				        	<environment>${cloudhub.environment}</environment>
+				        	<workerType>Micro</workerType>
+				        	<workers>1</workers>
+				    </configuration>
+				    <executions>
+				        <execution>
+				            <id>deploy</id>
+				            <phase>deploy</phase>
+				            <goals>
+				                <goal>deploy</goal>
+				            </goals>
+				        </execution>
+				    </executions>
+				</plugin>		
+					<plugin> 
+						<groupId>org.apache.maven.plugins</groupId> 
+						<artifactId>maven-deploy-plugin</artifactId> 
+						<version>2.4</version> 
+						<configuration> 
+						<skip>true</skip> 
+						</configuration> 
+					</plugin> 		
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>deploy-onprem</id>
+			<dependencies>
+				<!-- Dependencies used only by the integration tests -->
+			</dependencies>
+			<activation>
+					<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+		
+				<plugins>
+										
+					<plugin>
+					    <groupId>org.mule.tools.maven</groupId>
+					    <artifactId>mule-maven-plugin</artifactId>
+					    <version>2.1.2</version>
+					    <configuration>
+					        <deploymentType>arm</deploymentType>
+					        <applicationName>${arm.appname}</applicationName>
+					        <username>${cloudhub.username}</username>
+					        <password>${cloudhub.password}</password>
+					        <target>${arm.targetname}</target>
+					        <targetType>server</targetType>             <!-- One of: server, serverGroup, cluster -->
+					        <environment>${cloudhub.environment}</environment>
+					        <muleVersion>3.8.0</muleVersion>
+					    </configuration>
+					    <executions>
+					        <execution>
+					            <id>deploy</id>
+					            <phase>deploy</phase>
+					            <goals>
+					                <goal>deploy</goal>
+					            </goals>
+					        </execution>
+					    </executions>
+					</plugin>	
+					
+					<plugin> 
+						<groupId>org.apache.maven.plugins</groupId> 
+						<artifactId>maven-deploy-plugin</artifactId> 
+						<version>2.4</version> 
+						<configuration> 
+						<skip>true</skip> 
+						</configuration> 
+					</plugin> 		
+				</plugins>
+			</build>
+		</profile>
+		
+		
+		
+		<profile>
+			<id>integration-tests-cloudhub</id>
+			<dependencies>
+				<!-- Dependencies used only by the integration tests -->
+			</dependencies>
+			<activation>
+				<!--
+				<property>
+					<name>integration.tests</name>
+					<value>cloudhub</value>
+				</property> -->
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+
+				<plugins>
+
+					<!--SOAP UI PLugin-->
+					<plugin>
+						<groupId>com.smartbear.soapui</groupId>
+						<artifactId>soapui-maven-plugin</artifactId>
+						<version>4.6.1</version>
+						<configuration>
+							<projectFile>/Users/ajaynagaraju/AnypointStudio/workspace38/mavenmvp/src/test/SoapUI/Mavensampletest.xml</projectFile>
+<!-- 							<testSuite>Mavensampletest</testSuite> -->
+<!-- 							<settingsFile>/Users/ajaynagaraju/soapui-settings.xml</settingsFile> -->
+							<tool>wsi,axis1,axis2</tool>
+							<outputFolder>target/soapuitest</outputFolder>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					
+				</plugins>
+			</build>
+		</profile>
+
+	<profile>
+			<id>testwithcoverage</id>
+			<dependencies>
+				<!-- Dependencies used only by the integration tests -->
+			</dependencies>
+			<activation>
+				<!--
+				<property>
+					<name>integration.tests</name>
+					<value>cloudhub</value>
+				</property> -->
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+
+				<plugins>
+					<plugin>
+			                <groupId>com.mulesoft.munit.tools</groupId>
+			                <artifactId>munit-maven-plugin</artifactId>
+			                <version>${munit.version}</version>
+			                <executions>
+			                    <execution>
+			                        <id>test</id>
+			                        <phase>test</phase>
+			                        <goals>
+			                            <goal>test</goal>
+			                        </goals>
+			                         <configuration>
+			                         	<dynamicPorts>
+										  <dynamicPort>http.port</dynamicPort>
+										  <dynamicPort>http.port.1</dynamicPort>
+										</dynamicPorts>
+									<coverage>
+										  <runCoverage>true</runCoverage>
+										  <failBuild>true</failBuild>
+										
+										  <requiredApplicationCoverage>${ApplicationCoverageRequired}</requiredApplicationCoverage>
+										  <requiredResourceCoverage>${ResourceCoverageRequired}</requiredResourceCoverage>
+										  <requiredFlowCoverage>${FlowCoverageRequired}</requiredFlowCoverage>
+									</coverage>     
+									 <formats>
+									    	<format>console</format>  
+									    	<format>html</format>     
+									 </formats>
+									 </configuration>               
+								</execution>
+			                </executions>
+			            </plugin>
+					
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+	<pluginRepositories>
+		    <pluginRepository>
+		        <id>mule-public</id>
+		        <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
+		    </pluginRepository>
+		    
+		    <pluginRepository>
+			<id>smartbear-sweden-plugin-repository</id>
+			<url>http://www.soapui.org/repository/maven2/</url>
+		</pluginRepository>
+		
+	</pluginRepositories>	
+		</project>

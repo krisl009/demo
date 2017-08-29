@@ -1,0 +1,24 @@
+906640567041@cloudservices.gserviceaccount.com
+
+649111726755@cloudservices.gserviceaccount.com
+
+1001909271807@cloudservices.gserviceaccount.com
+
+gcloud deployment-manager deployments delete my-first-deployment
+
+gcloud deployment-manager deployments create my-first-deployment --config cr_vm_1.yaml
+
+tccc-sbox-shared-services
+
+tccc-dev-shared-services-0001
+
+asia-east1
+europe-west1
+us-central1
+us-east1
+
+7026090714/488078
+
+https://console.developers.google.com/apis/api/sqladmin/overview?project=tccc-sbox-shared-services-0001&pli=1
+
+projects/tccc-sbox-shared-services/regions/asia-central1/subnetworks/subnetworkfortest

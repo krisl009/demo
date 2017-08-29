@@ -1,0 +1,211 @@
+Shashank Ramakrishnaiah ?10:06 PM?:
+	
+Hi Ananth
+	
+I have got Lokesh with me
+Rajamani, Ananth (US - Dallas) ?10:06 PM?:
+	
+hi
+Shashank Ramakrishnaiah ?10:07 PM?:
+	
+What are you looking for with respect to Queue.. 
+	
+a new Queue to be created and credentials to access the Queue from integration?
+Rajamani, Ananth (US - Dallas) ?10:07 PM?:
+	
+yes
+	
+since its new integration
+Shashank Ramakrishnaiah ?10:07 PM?:
+	
+What is the Queue name that you want to create?
+ 
+	Maria Capalleja has joined the conference.
+ 
+Rajamani, Ananth (US - Dallas) ?10:09 PM?:
+	
+Added Betty also
+Maria Capalleja ?10:09 PM?:
+	
+hi
+	
+Should the name of the queue need to follow naming conventions?
+Rajamani, Ananth (US - Dallas) ?10:10 PM?:
+	
+yes
+Maria Capalleja ?10:10 PM?:
+	
+Satia used to create the queues
+Rajamani, Ananth (US - Dallas) ?10:10 PM?:
+	
+Shashank is asking about the details
+Shashank Ramakrishnaiah ?10:10 PM?:
+	
+Hi Betty
+Maria Capalleja ?10:10 PM?:
+	
+hi!
+Shashank Ramakrishnaiah ?10:10 PM?:
+	
+I was asking for Queue name to be created
+Maria Capalleja ?10:10 PM?:
+	
+what is our naming convention?
+	
+Satia always created the queues before
+	
+I am not sure about the naming convention
+Shashank Ramakrishnaiah ?10:11 PM?:
+	
+Yes.. Lokesh will be creating it going forward,,
+	
+But Dev team has to give the Queue name
+	
+Queue name convention would be 
+	
+Source+Destination+Data+Envrionment
+	
+So for Cutrale..
+	
+Will source be Cutrale?
+Rajamani, Ananth (US - Dallas) ?10:12 PM?:
+	
+So in this case CutraleSAPFinanceDev?
+	
+SAPCutraleFinanceDev?
+Shashank Ramakrishnaiah ?10:13 PM?:
+	
+CutraleSAPFinance-Dev 
+Maria Capalleja ?10:13 PM?:
+	
+yes
+	
+that looks good
+Rajamani, Ananth (US - Dallas) ?10:13 PM?:
+	
+there are 2 queues \
+	
+one for inbound to SAP and another one outbound from SAP
+	
+So it should be like
+	
+CutraleSAPFinance-Dev 
+Maria Capalleja ?10:14 PM?:
+	
+then the other is CutraleSAPFinance-Dev
+Shashank Ramakrishnaiah ?10:14 PM?:
+	
+CutraleToSAPFinance-Dev  and SAPToCutraleFinance-Dev 
+Rajamani, Ananth (US - Dallas) ?10:14 PM?:
+	
+Yes
+Maria Capalleja ?10:14 PM?:
+	
+yes
+Rajamani, Ananth (US - Dallas) ?10:14 PM?:
+	
+Is it S3 Buckets we will be using?
+	
+from mule what kind of connector we need to use to connect these queue
+Shashank Ramakrishnaiah ?10:15 PM?:
+	
+Whats your project flow.. IS the message size going to be more than 256KB?
+individual message size
+Rajamani, Ananth (US - Dallas) ?10:15 PM?:
+	
+might be
+Maria Capalleja ?10:16 PM?:
+	
+the SAPToCutrale no, that is an small IDOC
+Rajamani, Ananth (US - Dallas) ?10:16 PM?:
+	
+thanks betty
+	
+i was tying betty could answer better for this question :)
+Maria Capalleja ?10:16 PM?:
+	
+let me take a pick in P08
+Shashank Ramakrishnaiah ?10:17 PM?:
+	
+If there is no big payload we are look into.. Then we you SQS connector on the publisher and SQS connector on the subscriber
+Rajamani, Ananth (US - Dallas) ?10:17 PM?:
+	
+sounds good to me
+	
+Betty are you ok with this?
+be right back
+Maria Capalleja ?10:19 PM?:
+	
+The biggest IDOC I see in SAP P08 has 12 segments 
+	
+and each segment is small
+that was in January
+Rajamani, Ananth (US - Dallas) ?10:22 PM?:
+	
+ok
+	
+then it may not be more than the size shashank mentioned
+Maria Capalleja ?10:22 PM?:
+	
+hold... why Cutrale has 2 queues?
+ahhhh to send the HTTP response
+Rajamani, Ananth (US - Dallas) ?10:23 PM?:
+	
+yeah
+Maria Capalleja ?10:23 PM?:
+	
+oh.... and can you keep that connection open in Mule?
+because Tibco send the response in the same connection
+Rajamani, Ananth (US - Dallas) ?10:23 PM?:
+	
+yeah
+Maria Capalleja ?10:24 PM?:
+	
+then.... how do we do that?
+Rajamani, Ananth (US - Dallas) ?10:24 PM?:
+	
+i can't connect directly from cloudhub to SAP
+
+Rajamani, Ananth (US - Dallas) ?10:29 PM?:
+	
+its a sync call from Cutrale
+Maria Capalleja ?10:30 PM?:
+	
+yes, it is a sync call from cutrale
+Rajamani, Ananth (US - Dallas) ?10:30 PM?:
+	
+http to Cluhdhub and waiting for response
+	
+:(
+Shashank Ramakrishnaiah ?10:30 PM?:
+	
+In that case you should use HTTP to connect to onprem..instead of Queue
+Rajamani, Ananth (US - Dallas) ?10:31 PM?:
+	
+since its DR0 we need to use Queue
+	
+that is the recomended appoach which creates all kind of complications
+
+Shashank Ramakrishnaiah ?10:31 PM?:
+	
+Can we get on a call.. 
+Rajamani, Ananth (US - Dallas) ?10:31 PM?:
+	
+sure
+Maria Capalleja ?10:31 PM?:
+	
+yes, lets open a bridge
+Rajamani, Ananth (US - Dallas) ?10:32 PM?:
+	
+betty can you please share the bridge?
+Maria Capalleja ?10:32 PM?:
+	
+660 982 0748 
+	
+(404) 381-8527 
+Rajamani, Ananth (US - Dallas) ?10:32 PM?:
+	
+ok joining
+Maria Capalleja ?10:33 PM?:
+	
+on the call

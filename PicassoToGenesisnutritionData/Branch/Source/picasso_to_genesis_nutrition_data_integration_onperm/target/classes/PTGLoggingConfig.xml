@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- *************************************************************************** 
+* Coca Cola
+* Version Template: 2015
+* File Name:   ReconciliationReportLogging.xml
+* Description: This flow is used for configuration for the logger
+* Version     ChgDate          Author              Comments
+* ________   __________       ________             ___________
+*  1.0       Apr 06 2015       msatyana        Initial Creation	
+*************************************************************************** -->
+<mule xmlns:mulerequester="http://www.mulesoft.org/schema/mule/mulerequester"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:msmq="http://www.mulesoft.org/schema/mule/msmq"
+	xmlns:amqp="http://www.mulesoft.org/schema/mule/amqp" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/amqp http://www.mulesoft.org/schema/mule/amqp/current/mule-amqp.xsd
+http://www.mulesoft.org/schema/mule/msmq http://www.mulesoft.org/schema/mule/msmq/current/mule-msmq.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mulerequester http://www.mulesoft.org/schema/mule/mulerequester/current/mule-mulerequester.xsd">
+
+	<spring:beans>
+		<notifications>
+			<notification event="COMPONENT-MESSAGE" />
+			<notification event="ENDPOINT-MESSAGE" />
+			<notification-listener ref="setupAndNotificationLogger" />
+		</notifications>
+
+		<spring:bean name="setupAndNotificationLogger"
+			class="com.cocacola.logging.notification.CommonNotificationLogger">
+			<spring:property name="projectIdentifier" value="{projectName}" />
+			<spring:property name="uniquestringIdentifier" value="${uniQueKeyString}" />
+			<spring:property name="convertorUtil">
+				<spring:ref local="convertionUtil" />
+			</spring:property>
+			<spring:property name="payloadFactory">
+				<spring:ref local="payloadFactoryBean" />
+			</spring:property>
+			<spring:property name="usecaseFactory">
+				<spring:ref local="usecaseFactoryBean" />
+			</spring:property>
+			<spring:property name="environmentFactory">
+				<spring:ref local="environmentFactoryBean" />
+			</spring:property>
+			<spring:property name="executionFactory">
+				<spring:ref local="executionFactoryBean" />
+			</spring:property>
+			<spring:property name="exceptionFactory">
+				<spring:ref local="exceptionFactoryBean" />
+			</spring:property>
+		</spring:bean>
+
+		<spring:bean id="payloadFactoryBean"
+			class="com.cocacola.logging.classes.AbstractPayloadLogBeanFactory">
+			<spring:lookup-method name="getPayloadLogBean"
+				bean="LoggingPayloadBean" />
+		</spring:bean>
+		<spring:bean id="usecaseFactoryBean"
+			class="com.cocacola.logging.classes.AbstractUsecaseLogBeanFactory">
+			<spring:lookup-method name="getUsecaseLogBean"
+				bean="LoggingUsecaseBean" />
+		</spring:bean>
+		<spring:bean id="environmentFactoryBean"
+			class="com.cocacola.logging.classes.AbstractEnvironmentLogBeanFactory">
+			<spring:lookup-method name="getEnvironmentLogBean"
+				bean="LoggingEnvironmentBean" />
+		</spring:bean>
+		<spring:bean id="executionFactoryBean"
+			class="com.cocacola.logging.classes.AbstractExecutionLogBeanFactory">
+			<spring:lookup-method name="getExecutionLogBean"
+				bean="LoggingExecutionBean" />
+		</spring:bean>
+		<spring:bean id="exceptionFactoryBean"
+			class="com.cocacola.logging.classes.AbstractExceptionLogBeanFactory">
+			<spring:lookup-method name="getExceptionLogBean"
+				bean="LoggingExceptionBean" />
+		</spring:bean>
+		<spring:bean id="convertionUtil"
+			class="com.cocacola.logging.classes.JSONConvertorUtil" scope="prototype" />
+
+		<spring:bean id="LoggingPayloadBean"
+			class="com.cocacola.logging.PTG.PTGPayloadLog" scope="prototype">
+			<spring:property name="payloadTracking" value="ON" />
+		</spring:bean>
+
+		<spring:bean id="LoggingUsecaseBean"
+			class="com.cocacola.logging.PTG.PTGUsecaseLog" scope="prototype">
+			<spring:property name="integrationId" value="${integrationId}" />
+			<spring:property name="integrationIdValue" value="${integrationIdValue}" />
+			<spring:property name="sourceSystemId" value="${sourceSystemId}" />
+			<spring:property name="sourceSystemValue" value="${sourceSystemValue}" />
+			<spring:property name="targetSystemId" value="${targetSystemId}" />
+			<spring:property name="targetSystemValue" value="${targetSystemValue}" />
+			<spring:property name="integrationName" value="${integrationName}" />
+			<spring:property name="integrationNameValue" value="${integrationNameValue}" />
+			<spring:property name="correlationID" value="${correlationID}" />
+			<spring:property name="resourceType" value="${resourceType}" />
+			<spring:property name="resourceName" value="${resourceName}" />
+		</spring:bean>
+		<spring:bean id="LoggingEnvironmentBean"
+			class="com.cocacola.logging.PTG.PTGEnvironmentLog" scope="prototype">
+			<spring:property name="ip" value="${ip}" />
+			<spring:property name="serverName" value="${serverName}" />
+			<spring:property name="domainname" value="${domainname}" />
+		</spring:bean>
+		<spring:bean id="LoggingExecutionBean"
+			class="com.cocacola.logging.PTG.PTGExecutionLog" scope="prototype">
+			<spring:property name="timestamp" value="${timestamp}" />
+			<!-- <spring:property name="correlationID" value="${correlationID}" /> -->
+			<spring:property name="messageID" value="${messageID}" />
+			<spring:property name="status" value="${status}" />
+			<spring:property name="executionPoint" value="${executionPoint}" />
+			<spring:property name="globalidentifier" value="CorelationID" />
+		</spring:bean>
+		<spring:bean id="LoggingExceptionBean"
+			class="com.cocacola.logging.PTG.PTGExceptionLog" scope="prototype">
+			<spring:property name="errorCode" value="${errorCode}" />
+			<spring:property name="errorText" value="${errorText}" />
+			<spring:property name="errorType" value="${errorType}" />
+		</spring:bean>
+
+	</spring:beans>
+</mule>
